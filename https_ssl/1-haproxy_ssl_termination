@@ -40,12 +40,12 @@ frontend missmbuvi-frontend-http
         default_backend missmbuvi-backend
 
 frontend missmbuvi-frontend-https
-	bind *:443 ssl crt /etc/letsencrypt/live/www.missmbuvi.tech/fullchain.pem
+	bind *:443 ssl crt /etc/letsencrypt/live/www.missmbuvi.tech/fullchain.pem 
+        /etc/letsencrypt/live/www.missmbuvi.tech/privkey.pem
 	http-request set-header X-Forwarded-Proto https
-	default_backend missmbuvi-backend
+	default_backend
 
-backend missmbuvi-backend
-        balance roundrobin
+backend missmbuvi-backend        
         server 6076-web-01 52.206.186.86 check
         server 6076-web-02 54.158.11.122 check
 
